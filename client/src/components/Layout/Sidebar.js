@@ -5,8 +5,6 @@ import {
   FaBook, 
   FaFile, 
   FaUser, 
-  FaUsers, 
-  FaCog, 
   FaUpload,
   FaChartBar,
   FaTimes
