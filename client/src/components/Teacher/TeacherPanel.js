@@ -29,9 +29,14 @@ const TeacherPanel = () => {
   const [subject, setSubject] = useState(null);
   const [loading, setLoading] = useState(true);
 
- useEffect(() => {
+ const loadTeacherData = useCallback(() => {
+  // logic
+}, []);
+
+useEffect(() => {
   loadTeacherData();
 }, [loadTeacherData]);
+
 
 
   const loadTeacherData = async () => {
