@@ -2,8 +2,6 @@ import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import { 
-  FaChartBar, 
-  FaBook, 
   FaFile,
   FaDownload,
   FaUpload,
@@ -31,9 +29,10 @@ const TeacherPanel = () => {
   const [subject, setSubject] = useState(null);
   const [loading, setLoading] = useState(true);
 
-  useEffect(() => {
-    loadTeacherData();
-  }, []);
+ useEffect(() => {
+  loadTeacherData();
+}, [loadTeacherData]);
+
 
   const loadTeacherData = async () => {
     try {
