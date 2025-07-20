@@ -1,0 +1,211 @@
+.loading-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(255, 255, 255, 0.9);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+  -webkit-backdrop-filter: blur(2px);
+  backdrop-filter: blur(2px);
+}
+
+body.dark-mode .loading-overlay {
+  background: rgba(26, 26, 26, 0.9);
+}
+
+.loading-spinner-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+}
+
+.loading-spinner-container.small {
+  gap: 10px;
+}
+
+.loading-spinner-container.large {
+  gap: 30px;
+}
+
+.loading-spinner {
+  position: relative;
+  display: inline-block;
+}
+
+.loading-spinner-container.small .loading-spinner {
+  width: 40px;
+  height: 40px;
+}
+
+.loading-spinner-container.medium .loading-spinner {
+  width: 60px;
+  height: 60px;
+}
+
+.loading-spinner-container.large .loading-spinner {
+  width: 80px;
+  height: 80px;
+}
+
+.spinner-ring {
+  position: absolute;
+  border: 3px solid transparent;
+  border-radius: 50%;
+  animation: spin 1.2s cubic-bezier(0.5, 0, 0.5, 1) infinite;
+}
+
+.loading-spinner-container.small .spinner-ring {
+  width: 40px;
+  height: 40px;
+  border-width: 2px;
+}
+
+.loading-spinner-container.medium .spinner-ring {
+  width: 60px;
+  height: 60px;
+  border-width: 3px;
+}
+
+.loading-spinner-container.large .spinner-ring {
+  width: 80px;
+  height: 80px;
+  border-width: 4px;
+}
+
+.spinner-ring:nth-child(1) {
+  border-top-color: var(--primary-color);
+  animation-delay: -0.45s;
+}
+
+.spinner-ring:nth-child(2) {
+  border-top-color: var(--secondary-color);
+  animation-delay: -0.3s;
+}
+
+.spinner-ring:nth-child(3) {
+  border-top-color: var(--success-color);
+  animation-delay: -0.15s;
+}
+
+.spinner-ring:nth-child(4) {
+  border-top-color: var(--warning-color);
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+.loading-message {
+  margin: 0;
+  color: var(--dark-gray);
+  font-size: 16px;
+  font-weight: 500;
+  text-align: center;
+  animation: pulse 2s ease-in-out infinite;
+}
+
+body.dark-mode .loading-message {
+  color: var(--dark-text);
+}
+
+.loading-spinner-container.small .loading-message {
+  font-size: 14px;
+}
+
+.loading-spinner-container.large .loading-message {
+  font-size: 18px;
+}
+
+@keyframes pulse {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.6;
+  }
+}
+
+/* متغيرات للاستخدام في مكونات أخرى */
+.inline-spinner {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.inline-spinner .loading-spinner {
+  width: 20px;
+  height: 20px;
+}
+
+.inline-spinner .spinner-ring {
+  width: 20px;
+  height: 20px;
+  border-width: 2px;
+}
+
+.inline-spinner .loading-message {
+  font-size: 14px;
+  margin: 0;
+}
+
+/* للأزرار */
+.btn-loading {
+  position: relative;
+  pointer-events: none;
+}
+
+.btn-loading .loading-spinner {
+  width: 16px;
+  height: 16px;
+}
+
+.btn-loading .spinner-ring {
+  width: 16px;
+  height: 16px;
+  border-width: 2px;
+  border-top-color: currentColor;
+}
+
+/* للبطاقات */
+.card-loading {
+  position: relative;
+  min-height: 200px;
+}
+
+.card-loading .loading-spinner-container {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+/* الاستجابة للشاشات الصغيرة */
+@media (max-width: 768px) {
+  .loading-spinner-container.medium .loading-spinner {
+    width: 50px;
+    height: 50px;
+  }
+  
+  .loading-spinner-container.medium .spinner-ring {
+    width: 50px;
+    height: 50px;
+  }
+  
+  .loading-message {
+    font-size: 14px;
+  }
+  
+  .loading-spinner-container.large .loading-message {
+    font-size: 16px;
+  }
+}

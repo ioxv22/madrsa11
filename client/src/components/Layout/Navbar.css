@@ -1,0 +1,477 @@
+.navbar {
+  background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+  color: var(--white);
+  padding: 0;
+  box-shadow: var(--shadow-md);
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  height: 70px;
+}
+
+.navbar-content {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 70px;
+  padding: 0 20px;
+}
+
+/* الجانب الأيمن */
+.navbar-right {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.sidebar-toggle {
+  background: none;
+  border: none;
+  color: var(--white);
+  font-size: 18px;
+  cursor: pointer;
+  padding: 10px;
+  border-radius: var(--border-radius);
+  transition: var(--transition);
+}
+
+.sidebar-toggle:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+}
+
+.navbar-brand {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: var(--white);
+  text-decoration: none;
+  font-size: 24px;
+  font-weight: 700;
+}
+
+.brand-icon {
+  font-size: 28px;
+}
+
+/* الجانب الأوسط - البحث */
+.navbar-center {
+  flex: 1;
+  max-width: 500px;
+  margin: 0 20px;
+}
+
+.search-container {
+  position: relative;
+  width: 100%;
+}
+
+.search-input {
+  width: 100%;
+  padding: 10px 15px 10px 45px;
+  border: none;
+  border-radius: 25px;
+  background-color: rgba(255, 255, 255, 0.15);
+  color: var(--white);
+  font-size: 14px;
+  transition: var(--transition);
+}
+
+.search-input::placeholder {
+  color: rgba(255, 255, 255, 0.7);
+}
+
+.search-input:focus {
+  outline: none;
+  background-color: rgba(255, 255, 255, 0.25);
+  box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.1);
+}
+
+.search-icon {
+  position: absolute;
+  right: 15px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: rgba(255, 255, 255, 0.7);
+  font-size: 14px;
+}
+
+/* الجانب الأيسر */
+.navbar-left {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+/* زر الوضع الليلي */
+.theme-toggle {
+  background: none;
+  border: none;
+  color: var(--white);
+  font-size: 18px;
+  cursor: pointer;
+  padding: 10px;
+  border-radius: var(--border-radius);
+  transition: var(--transition);
+}
+
+.theme-toggle:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+}
+
+/* الإشعارات */
+.notifications-container {
+  position: relative;
+}
+
+.notifications-toggle {
+  background: none;
+  border: none;
+  color: var(--white);
+  font-size: 18px;
+  cursor: pointer;
+  padding: 10px;
+  border-radius: var(--border-radius);
+  transition: var(--transition);
+  position: relative;
+}
+
+.notifications-toggle:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+}
+
+.notification-badge {
+  position: absolute;
+  top: 5px;
+  left: 5px;
+  background-color: var(--danger-color);
+  color: var(--white);
+  font-size: 10px;
+  font-weight: bold;
+  padding: 2px 6px;
+  border-radius: 10px;
+  min-width: 18px;
+  text-align: center;
+}
+
+.notifications-dropdown {
+  position: absolute;
+  top: 100%;
+  left: -200px;
+  width: 300px;
+  background-color: var(--white);
+  border-radius: var(--border-radius);
+  box-shadow: var(--shadow-lg);
+  z-index: 1001;
+  margin-top: 10px;
+  overflow: hidden;
+}
+
+body.dark-mode .notifications-dropdown {
+  background-color: var(--dark-surface);
+  color: var(--dark-text);
+}
+
+.notifications-header {
+  padding: 15px 20px;
+  border-bottom: 1px solid #e9ecef;
+  background-color: #f8f9fa;
+}
+
+body.dark-mode .notifications-header {
+  background-color: var(--dark-bg);
+  border-bottom-color: #444;
+}
+
+.notifications-header h4 {
+  margin: 0;
+  font-size: 16px;
+  color: var(--dark-gray);
+}
+
+body.dark-mode .notifications-header h4 {
+  color: var(--dark-text);
+}
+
+.notifications-list {
+  max-height: 300px;
+  overflow-y: auto;
+}
+
+.notification-item {
+  padding: 15px 20px;
+  border-bottom: 1px solid #f0f0f0;
+  transition: var(--transition);
+}
+
+.notification-item:hover {
+  background-color: #f8f9fa;
+}
+
+body.dark-mode .notification-item {
+  border-bottom-color: #444;
+}
+
+body.dark-mode .notification-item:hover {
+  background-color: var(--dark-bg);
+}
+
+.notification-content p {
+  margin: 0 0 5px 0;
+  font-size: 14px;
+  color: var(--dark-gray);
+}
+
+body.dark-mode .notification-content p {
+  color: var(--dark-text);
+}
+
+.notification-content small {
+  color: var(--gray);
+  font-size: 12px;
+}
+
+body.dark-mode .notification-content small {
+  color: var(--dark-text-secondary);
+}
+
+.notifications-footer {
+  padding: 10px 20px;
+  text-align: center;
+  border-top: 1px solid #e9ecef;
+  background-color: #f8f9fa;
+}
+
+body.dark-mode .notifications-footer {
+  background-color: var(--dark-bg);
+  border-top-color: #444;
+}
+
+.notifications-footer a {
+  color: var(--primary-color);
+  text-decoration: none;
+  font-size: 14px;
+  font-weight: 500;
+}
+
+/* قائمة المستخدم */
+.user-menu-container {
+  position: relative;
+}
+
+.user-menu-toggle {
+  background: none;
+  border: none;
+  color: var(--white);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 8px 12px;
+  border-radius: var(--border-radius);
+  transition: var(--transition);
+}
+
+.user-menu-toggle:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+}
+
+.user-avatar {
+  width: 35px;
+  height: 35px;
+  background-color: rgba(255, 255, 255, 0.2);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 16px;
+}
+
+.user-avatar.large {
+  width: 50px;
+  height: 50px;
+  font-size: 20px;
+}
+
+.user-info {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  text-align: right;
+}
+
+.user-name {
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 1.2;
+}
+
+.user-role {
+  font-size: 12px;
+  opacity: 0.8;
+  line-height: 1.2;
+}
+
+.user-dropdown {
+  position: absolute;
+  top: 100%;
+  left: -150px;
+  width: 280px;
+  background-color: var(--white);
+  border-radius: var(--border-radius);
+  box-shadow: var(--shadow-lg);
+  z-index: 1001;
+  margin-top: 10px;
+  overflow: hidden;
+}
+
+body.dark-mode .user-dropdown {
+  background-color: var(--dark-surface);
+  color: var(--dark-text);
+}
+
+.user-dropdown-header {
+  padding: 20px;
+  background-color: #f8f9fa;
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+body.dark-mode .user-dropdown-header {
+  background-color: var(--dark-bg);
+}
+
+.user-details h4 {
+  margin: 0 0 5px 0;
+  font-size: 16px;
+  color: var(--dark-gray);
+}
+
+body.dark-mode .user-details h4 {
+  color: var(--dark-text);
+}
+
+.user-details p {
+  margin: 0 0 8px 0;
+  font-size: 14px;
+  color: var(--gray);
+}
+
+body.dark-mode .user-details p {
+  color: var(--dark-text-secondary);
+}
+
+.role-badge {
+  display: inline-block;
+  padding: 3px 8px;
+  border-radius: 12px;
+  font-size: 11px;
+  font-weight: 600;
+  text-transform: uppercase;
+}
+
+.role-badge.admin {
+  background-color: var(--danger-color);
+  color: var(--white);
+}
+
+.role-badge.student {
+  background-color: var(--primary-color);
+  color: var(--white);
+}
+
+.user-dropdown-menu {
+  padding: 10px 0;
+}
+
+.dropdown-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 20px;
+  color: var(--dark-gray);
+  text-decoration: none;
+  font-size: 14px;
+  transition: var(--transition);
+  border: none;
+  background: none;
+  width: 100%;
+  text-align: right;
+  cursor: pointer;
+}
+
+body.dark-mode .dropdown-item {
+  color: var(--dark-text);
+}
+
+.dropdown-item:hover {
+  background-color: #f8f9fa;
+}
+
+body.dark-mode .dropdown-item:hover {
+  background-color: var(--dark-bg);
+}
+
+.dropdown-item.logout {
+  color: var(--danger-color);
+}
+
+.dropdown-item.logout:hover {
+  background-color: rgba(255, 107, 107, 0.1);
+}
+
+.dropdown-divider {
+  border: none;
+  border-top: 1px solid #e9ecef;
+  margin: 8px 0;
+}
+
+body.dark-mode .dropdown-divider {
+  border-top-color: #444;
+}
+
+/* الاستجابة للشاشات الصغيرة */
+@media (max-width: 768px) {
+  .navbar-content {
+    padding: 0 15px;
+  }
+  
+  .navbar-center {
+    display: none;
+  }
+  
+  .user-info {
+    display: none;
+  }
+  
+  .user-dropdown {
+    left: -200px;
+    width: 250px;
+  }
+  
+  .notifications-dropdown {
+    left: -250px;
+    width: 280px;
+  }
+}
+
+@media (max-width: 480px) {
+  .navbar-brand {
+    font-size: 18px;
+  }
+  
+  .brand-icon {
+    font-size: 20px;
+  }
+  
+  .navbar-left {
+    gap: 10px;
+  }
+  
+  .theme-toggle,
+  .notifications-toggle,
+  .sidebar-toggle {
+    padding: 8px;
+    font-size: 16px;
+  }
+}
