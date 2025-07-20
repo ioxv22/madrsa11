@@ -1,7 +1,7 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import { Link } from 'react-router-dom';
 import { toast } from 'react-toastify';
-import { 
+import {
   FaFile,
   FaDownload,
   FaUpload,
@@ -10,6 +10,7 @@ import {
   FaChartLine,
   FaPlus
 } from 'react-icons/fa';
+
 import { useAuth } from '../../context/AuthContext';
 import fileService from '../../services/fileService';
 import subjectService from '../../services/subjectService';
@@ -22,6 +23,7 @@ const TeacherPanel = () => {
     overview: {
       totalFiles: 0,
       totalDownloads: 0,
+      totalViews: 0,
       recentFiles: 0
     }
   });
@@ -29,33 +31,23 @@ const TeacherPanel = () => {
   const [subject, setSubject] = useState(null);
   const [loading, setLoading] = useState(true);
 
- const loadTeacherData = useCallback(() => {
-  // logic
-}, []);
-
-useEffect(() => {
-  loadTeacherData();
-}, [loadTeacherData]);
-
-
-
-  const loadTeacherData = async () => {
+  const loadTeacherData = useCallback(async () => {
     try {
       setLoading(true);
-      
-      // تحميل بيانات المادة
+
       if (user.subjectId) {
+        // جلب بيانات المادة
         const subjectResponse = await subjectService.getSubject(user.subjectId);
         setSubject(subjectResponse.data);
-        
-        // تحميل ملفات المادة
-        const filesResponse = await fileService.getFiles({ 
+
+        // جلب الملفات الحديثة
+        const filesResponse = await fileService.getFiles({
           subject: user.subjectId,
-          limit: 5 
+          limit: 5
         });
         setRecentFiles(filesResponse.data.files);
-        
-        // تحميل الإحصائيات
+
+        // جلب الإحصائيات
         const statsResponse = await fileService.getTeacherStats(user.subjectId);
         setStats(statsResponse.data);
       }
@@ -65,19 +57,20 @@ useEffect(() => {
     } finally {
       setLoading(false);
     }
-  };
+  }, [user.subjectId]);
 
-  const formatNumber = (num) => {
-    return new Intl.NumberFormat('ar-SA').format(num);
-  };
+  useEffect(() => {
+    loadTeacherData();
+  }, [loadTeacherData]);
 
-  const formatDate = (dateString) => {
-    return new Date(dateString).toLocaleDateString('ar-SA', {
+  const formatNumber = (num) => new Intl.NumberFormat('ar-SA').format(num);
+
+  const formatDate = (dateString) =>
+    new Date(dateString).toLocaleDateString('ar-SA', {
       year: 'numeric',
       month: 'long',
       day: 'numeric'
     });
-  };
 
   if (loading) {
     return <LoadingSpinner />;
@@ -91,7 +84,7 @@ useEffect(() => {
           <p>مرحباً {user.fullName}</p>
           {subject && (
             <div className="subject-info">
-              <div 
+              <div
                 className="subject-badge"
                 style={{ backgroundColor: subject.color }}
               >
@@ -165,7 +158,7 @@ useEffect(() => {
 
         {recentFiles.length > 0 ? (
           <div className="files-grid">
-            {recentFiles.map(file => (
+            {recentFiles.map((file) => (
               <div key={file.id} className="file-card">
                 <div className="file-icon">
                   <FaFile />
@@ -174,9 +167,7 @@ useEffect(() => {
                   <h4>{file.title}</h4>
                   <p>{file.description}</p>
                   <div className="file-meta">
-                    <span className="file-date">
-                      {formatDate(file.created_at)}
-                    </span>
+                    <span className="file-date">{formatDate(file.created_at)}</span>
                     <span className="file-downloads">
                       <FaDownload />
                       {formatNumber(file.download_count)}
@@ -184,10 +175,7 @@ useEffect(() => {
                   </div>
                 </div>
                 <div className="file-actions">
-                  <Link 
-                    to={`/files/${file.id}`}
-                    className="btn btn-sm btn-outline"
-                  >
+                  <Link to={`/files/${file.id}`} className="btn btn-sm btn-outline">
                     <FaEye />
                     عرض
                   </Link>
