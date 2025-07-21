@@ -2,7 +2,10 @@ import axios from 'axios';
 
 // إنشاء مثيل axios
 const api = axios.create({
-  baseURL: process.env.REACT_APP_API_URL || 'http://localhost:5000/api',
+  baseURL:
+    window.location.hostname === "localhost"
+      ? "http://localhost:5000/api"
+      : "https://madrsa11-1.onrender.com/api",
   timeout: 30000, // 30 ثانية
   headers: {
     'Content-Type': 'application/json',
