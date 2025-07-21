@@ -1,14 +1,10 @@
 {
-  "name": "madrsa11",
+  "name": "server",
   "version": "1.0.0",
-  "description": "Madrasa School Project",
-  "main": "server/server.js",
+  "main": "server.js",
   "scripts": {
-    "start": "node server/server.js"
+    "start": "node server.js"
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
   "dependencies": {
     "express": "^4.19.2",
     "cors": "^2.8.5",
